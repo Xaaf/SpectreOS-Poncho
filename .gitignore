@@ -2,8 +2,8 @@
 .idea
 
 # Output
-/kernel/bin/*.*
-/OVMFbin/*.fd
+kernel/bin/**
+OVMFbin/*.fd
 
 # Prerequisites
 *.d
