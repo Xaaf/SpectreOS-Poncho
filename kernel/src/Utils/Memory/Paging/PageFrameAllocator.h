@@ -37,4 +37,6 @@ private:
     void        UnreservePages(void* address, uint64_t pageCount);
 };
 
+extern PageFrameAllocator GlobalAllocator;
+
 #endif // PAGEFRAMEALLOCATOR_H

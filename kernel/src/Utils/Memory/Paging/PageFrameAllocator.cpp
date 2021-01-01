@@ -6,6 +6,8 @@ uint64_t usedMemory;
 
 bool initialised = false;
 
+PageFrameAllocator GlobalAllocator;
+
 void PageFrameAllocator::ReadEfiMemoryMap(EFI_MEMORY_DESCRIPTOR* memoryMap, size_t memoryMapSize,
                                           size_t memoryMapDescriptorSize)
 {

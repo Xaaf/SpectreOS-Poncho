@@ -15,3 +15,11 @@ uint64_t GetMemorySize(EFI_MEMORY_DESCRIPTOR* memoryMap, uint64_t memoryMapEntri
 
 	return memorySizeBytes;
 }
+
+void MemorySet(void* startAddress, uint8_t value, uint64_t num)
+{
+	for (uint64_t i = 0; i < num; i++)
+	{
+		*(uint8_t*)((uint64_t)startAddress + i) = value;
+	}
+}
