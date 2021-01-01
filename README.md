@@ -12,4 +12,4 @@ SpectreOS started because I got an interest in gaining a deeper knowledge of the
 # Credits
 ## Awesome People
 - [Poncho](https://www.youtube.com/channel/UC15iQ_QzTPxB6yGzzifJfKA)
-    - His videos on how OS Development are crucial to the existense of this project! Without him, this entire project probably wouldn't have existed.
+    - His videos on OS Development are crucial to the existense of this project! Without him, this entire project probably wouldn't have existed.
