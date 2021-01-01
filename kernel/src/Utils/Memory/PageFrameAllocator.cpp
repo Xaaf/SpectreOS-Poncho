@@ -3,7 +3,6 @@
 uint64_t freeMemory;
 uint64_t reservedMemory;
 uint64_t usedMemory;
-uint64_t tempMemory;
 
 bool initialised = false;
 
@@ -74,9 +73,9 @@ void PageFrameAllocator::FreePages(void* address, uint64_t pageCount)
 
 void PageFrameAllocator::LockPage(void* address)
 {
-    uint64_t  index = (uint64_t)address / 4096;
+    uint64_t index = (uint64_t)address / 4096;
 
-    if (pageBitmap[index] == false) return;
+    if (pageBitmap[index] == true) return;
 
     pageBitmap.Set(index, true);
     freeMemory -= 4096;
@@ -104,11 +103,6 @@ uint64_t  PageFrameAllocator::GetUsedRAM()
 uint64_t  PageFrameAllocator::GetReservedRAM()
 {
     return reservedMemory;
-}
-
-uint64_t  PageFrameAllocator::GetTempRAM()
-{
-    return tempMemory;
 }
 
 void PageFrameAllocator::InitBitmap(size_t bitmapSize, void* bufferAddress)

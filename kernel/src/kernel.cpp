@@ -35,22 +35,17 @@ extern "C" void _start(BootInfo* bootInfo)
     newRenderer.cursorPosition = {0, newRenderer.cursorPosition.y + 16};
     newRenderer.Print("Free RAM: ");
     newRenderer.Print(to_string(newAllocator.GetFreeRAM() / 1024));
-    newRenderer.Print(" KB ");
+    newRenderer.Print(" KB");
     newRenderer.cursorPosition = {0, newRenderer.cursorPosition.y + 16};
 
     newRenderer.Print("Used RAM: ");
-    newRenderer.Print(to_string(newAllocator.GetUsedRAM()));
-    newRenderer.Print(" KB ");
+    newRenderer.Print(to_string(newAllocator.GetUsedRAM() / 1024));
+    newRenderer.Print(" KB");
     newRenderer.cursorPosition = {0, newRenderer.cursorPosition.y + 16};
 
     newRenderer.Print("Reserved RAM: ");
     newRenderer.Print(to_string(newAllocator.GetReservedRAM() / 1024));
-    newRenderer.Print(" KB ");
-    newRenderer.cursorPosition = {0, newRenderer.cursorPosition.y + 16};
-
-    newRenderer.Print("Temp RAM: ");
-    newRenderer.Print(to_string(newAllocator.GetTempRAM()));
-    newRenderer.Print(" KB ");
+    newRenderer.Print(" KB");
     newRenderer.cursorPosition = {0, newRenderer.cursorPosition.y + 16};
 
 	return;
