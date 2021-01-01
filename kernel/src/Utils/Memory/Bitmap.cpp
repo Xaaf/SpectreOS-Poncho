@@ -21,7 +21,5 @@ void Bitmap::Set(uint64_t index, bool value)
 	buffer[byteIndex] &= ~bitIndexer;
 
 	if (value)
-	{
 		buffer[byteIndex] |= bitIndexer;
-	}
 }

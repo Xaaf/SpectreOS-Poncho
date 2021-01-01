@@ -5,32 +5,23 @@
 #include "./Utils/Memory/Bitmap.h"
 #include "./Utils/Memory/EfiMemory.h"
 #include "./Utils/Memory/Memory.h"
-#include "./Utils/Memory/PageFrameAllocator.h"
+#include "./Utils/Memory/Paging/PageFrameAllocator.h"
 
 struct BootInfo
 {
-    Framebuffer* framebuffer;
-    PSF1_FONT* psf1_font;
-    EFI_MEMORY_DESCRIPTOR* memoryMap;
-    uint64_t memoryMapSize;
-    uint64_t memoryMapDescriptorSize;
+    Framebuffer*            framebuffer;
+    PSF1_FONT*              psf1_font;
+    EFI_MEMORY_DESCRIPTOR*  memoryMap;
+    uint64_t                memoryMapSize;
+    uint64_t                memoryMapDescriptorSize;
 };
 
 extern uint64_t _KernelStart;
 extern uint64_t _KernelEnd;
 
-uint64_t bloat[60000];
-
 extern "C" void _start(BootInfo* bootInfo) 
 {
 	BasicRenderer newRenderer = BasicRenderer(bootInfo->framebuffer, bootInfo->psf1_font);
-
-//	newRenderer.Print("Memory Map Size: ");
-//	newRenderer.Print(to_string(bootInfo->memoryMapSize));
-//    newRenderer.cursorPosition = {0, newRenderer.cursorPosition.y + 16};
-//    newRenderer.Print("Memory Descriptor Map Size: ");
-//    newRenderer.Print(to_string(bootInfo->memoryMapDescriptorSize));
-//    newRenderer.cursorPosition = {0, newRenderer.cursorPosition.y + 16};
 
 	PageFrameAllocator newAllocator;
 	newAllocator.ReadEfiMemoryMap(bootInfo->memoryMap, bootInfo->memoryMapSize, bootInfo->memoryMapDescriptorSize);

@@ -7,12 +7,12 @@
 class Bitmap
 {
 public:
-	size_t size;
-	uint8_t* buffer;
-	bool operator[](uint64_t index);
+	size_t 		size;
+	uint8_t* 	buffer;
+	bool 		operator[](uint64_t index);
 
 public:
-	void Set(uint64_t index, bool value);
+	void 		Set(uint64_t index, bool value);
 };
 
 #endif // BITMAP_H
