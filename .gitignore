@@ -1,6 +1,10 @@
 # IDE
 .idea
 
+# Output
+/kernel/bin
+/OVMFbin/*.fd
+
 # Prerequisites
 *.d
 
