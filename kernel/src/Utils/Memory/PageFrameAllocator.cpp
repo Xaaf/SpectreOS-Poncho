@@ -90,6 +90,20 @@ void PageFrameAllocator::LockPages(void* address, uint64_t pageCount)
     }
 }
 
+void* PageFrameAllocator::RequestPage()
+{
+    for (uint64_t i = 0; i < pageBitmap.size * 8; i++)
+    {
+        if (pageBitmap[i] == true) continue;
+
+        LockPage((void*)(i * 4096));
+        return (void*)(i * 4096);
+    }
+
+    // TODO: Page Frame Swap to file
+    return NULL;
+}
+
 uint64_t PageFrameAllocator::GetFreeRAM()
 {
     return freeMemory;

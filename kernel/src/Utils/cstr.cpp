@@ -127,10 +127,10 @@ const char* to_hstring(uint64_t value)
 		ptr = ((uint8_t*)valuePtr + i);
 		temp = ((*ptr & 0xF0) >> 4);
 
-		hexToStringOutput64[size - (i * 2 + 1)] = temp + (temp > 9 ? 'A' : '0');
+		hexToStringOutput64[size - (i * 2 + 1)] = temp + (temp > 9 ? 55 : '0');
 
 		temp = ((*ptr & 0x0F));
-		hexToStringOutput64[size - (i * 2)] = temp + (temp > 9 ? 'A' : '0');
+		hexToStringOutput64[size - (i * 2)] = temp + (temp > 9 ? 55 : '0');
 	}
 
 	hexToStringOutput64[size + 1] = 0;

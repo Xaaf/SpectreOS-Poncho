@@ -17,8 +17,11 @@ public:
 
 	void FreePage(void* address);
     void FreePages(void* address, uint64_t pageCount);
+
     void LockPage(void* address);
     void LockPages(void* address, uint64_t pageCount);
+
+    void* RequestPage();
 
     uint64_t GetFreeRAM();
     uint64_t GetUsedRAM();
@@ -26,8 +29,10 @@ public:
 
 private:
     void InitBitmap(size_t bitmapSize, void* bufferAddress);
+
 	void ReservePage(void* address);
     void ReservePages(void* address, uint64_t pageCount);
+
 	void UnreservePage(void* address);
     void UnreservePages(void* address, uint64_t pageCount);
 };
