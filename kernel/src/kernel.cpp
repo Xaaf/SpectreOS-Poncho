@@ -40,7 +40,6 @@ extern "C" void _start(BootInfo* bootInfo)
 
     PageTableManager pageTableManager = PageTableManager(pml4);
 
-
     for (uint64_t i = 0; i < GetMemorySize(bootInfo->memoryMap, memoryMapEntries, bootInfo->memoryMapDescriptorSize); i+= 0x1000)
     {
         pageTableManager.MapMemory((void*)i, (void*)i);
@@ -55,7 +54,7 @@ extern "C" void _start(BootInfo* bootInfo)
     }
 
     asm ("mov %0, %%cr3" : : "r" (pml4));
-    
+
     newRenderer.Print("New Page Map loaded...");
 
 	return;

@@ -30,15 +30,15 @@ void PageTableManager::MapMemory(void* virtualMemory, void* physicalMemory)
         pde.readWrite = true;
 
         pml4Address->entries[indexer.pdp_i] = pde;
-    }
+    }    
     else
     {
         pdp = (PageTable*)((uint64_t)pde.address << 12);
     }
 
-    pde = pdp->entries[indexer.pd_i];
+    pde = pml4Address->entries[indexer.pd_i];
     PageTable* pd;
-    
+
     if (!pde.present)
     {
         pd = (PageTable*)GlobalAllocator.RequestPage();
@@ -48,16 +48,16 @@ void PageTableManager::MapMemory(void* virtualMemory, void* physicalMemory)
         pde.present = true;
         pde.readWrite = true;
 
-        pdp->entries[indexer.pd_i] = pde;
-    }
+        pml4Address->entries[indexer.pd_i] = pde;
+    }    
     else
     {
         pd = (PageTable*)((uint64_t)pde.address << 12);
     }
 
-    pde = pd->entries[indexer.pd_i];
+    pde = pml4Address->entries[indexer.pt_i];
     PageTable* pt;
-    
+
     if (!pde.present)
     {
         pt = (PageTable*)GlobalAllocator.RequestPage();
@@ -67,8 +67,8 @@ void PageTableManager::MapMemory(void* virtualMemory, void* physicalMemory)
         pde.present = true;
         pde.readWrite = true;
 
-        pd->entries[indexer.pt_i] = pde;
-    }
+        pml4Address->entries[indexer.pt_i] = pde;
+    }    
     else
     {
         pt = (PageTable*)((uint64_t)pde.address << 12);
@@ -78,6 +78,6 @@ void PageTableManager::MapMemory(void* virtualMemory, void* physicalMemory)
     pde.address = (uint64_t)physicalMemory >> 12;
     pde.present = true;
     pde.readWrite = true;
-    
-    pt->entries[indexer.p_i] = pde;
+
+    pt->entries[indexer.p_i] = pde;   
 }
