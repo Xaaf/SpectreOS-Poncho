@@ -23,6 +23,7 @@ public:
     uint64_t GetFreeRAM();
     uint64_t GetUsedRAM();
     uint64_t GetReservedRAM();
+    uint64_t GetTempRAM();
 
 private:
     void InitBitmap(size_t bitmapSize, void* bufferAddress);

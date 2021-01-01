@@ -3,6 +3,7 @@
 uint64_t freeMemory;
 uint64_t reservedMemory;
 uint64_t usedMemory;
+uint64_t tempMemory;
 
 bool initialised = false;
 
@@ -103,6 +104,11 @@ uint64_t  PageFrameAllocator::GetUsedRAM()
 uint64_t  PageFrameAllocator::GetReservedRAM()
 {
     return reservedMemory;
+}
+
+uint64_t  PageFrameAllocator::GetTempRAM()
+{
+    return tempMemory;
 }
 
 void PageFrameAllocator::InitBitmap(size_t bitmapSize, void* bufferAddress)
