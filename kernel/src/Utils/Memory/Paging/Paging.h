@@ -3,19 +3,29 @@
 
 #include <stdint.h>
 
+enum PT_Flag
+{
+    present = 0,
+    readWrite = 1,
+    userSuper = 2,
+    writeThrough = 3,
+    cacheDisabled = 4,
+    accessed = 5,
+    largerPages = 7,
+    custom0 = 9,
+    custom1 = 10,
+    custom2 = 11,
+    NX = 63    // Only if supported
+};
+
 struct PageDirectoryEntry
 {
-    bool     present       : 1;
-    bool     readWrite     : 1;
-    bool     userSuper     : 1;
-    bool     writeThrough  : 1;
-    bool     cacheDisabled : 1;
-    bool     accessed      : 1;
-    bool     ignore0       : 1;
-    bool     largerPages   : 1;
-    bool     ignore1       : 1;
-    uint8_t  available     : 3;
-    uint64_t address       : 52;
+    uint64_t    value;
+    void        SetFlag(PT_Flag flag, bool enabled);
+    bool        GetFlag(PT_Flag flag);
+
+    void        SetAddress(uint64_t address);
+    uint64_t    GetAddress();
 };
 
 struct PageTable

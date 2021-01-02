@@ -59,8 +59,6 @@ extern "C" void _start(BootInfo* bootInfo)
     asm ("mov %0, %%cr3" : : "r" (pml4));
 
     MemorySet(bootInfo->framebuffer->baseAddress, 0, bootInfo->framebuffer->bufferSize);
-    
-    pageTableManager.MapMemory((void*)0x600000000, (void*)0x80000);
 
 	return;
 }
