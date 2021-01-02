@@ -1,8 +1,8 @@
 # 🖥️ SpectreOS
 
-[![GitHub last commit](https://img.shields.io/github/last-commit/Xaaf/SpectreOS)](https://github.com/skiftOS/skift/commits)
-[![GitHub issues](https://img.shields.io/github/issues-raw/Xaaf/SpectreOS)](https://github.com/skiftOS/skift/issues)
-[![GitHub pull requests](https://img.shields.io/github/issues-pr/Xaaf/SpectreOS)](https://github.com/skiftOS/skift/pulls)
+[![GitHub last commit](https://img.shields.io/github/last-commit/Xaaf/SpectreOS)](https://github.com/Xaaf/SpectreOS/commits)
+[![GitHub issues](https://img.shields.io/github/issues-raw/Xaaf/SpectreOS)](https://github.com/Xaaf/SpectreOS/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/Xaaf/SpectreOS)](https://github.com/Xaaf/SpectreOS/pulls)
 
 An operating system made from scratch with a simple goal: providing an easy time for any user. This operating system will attempt to reach this goal by having a nice-to-look-at graphical interface, which will be following design standards that should provide good UI/UX.
 
