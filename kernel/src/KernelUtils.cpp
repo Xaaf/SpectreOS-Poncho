@@ -1,4 +1,5 @@
 #include "KernelUtils.h"
+#include "./System/GDT/gdt.h"
 
 KernelInfo kernelInfo;
 PageTableManager pageTableManager = NULL;
@@ -42,6 +43,12 @@ void PrepareMemory(BootInfo* bootInfo)
 
 KernelInfo InitialiseKernel(BootInfo* bootInfo)
 {
+    GDTDescriptor gdtDescriptor;
+    gdtDescriptor.size = sizeof(GlobalDescriptorTable) - 1;
+    gdtDescriptor.offset = (uint64_t)&DefaultGDT;
+
+    LoadGDT(&gdtDescriptor);
+
     PrepareMemory(bootInfo);
     MemorySet(bootInfo->framebuffer->baseAddress, 0, bootInfo->framebuffer->bufferSize);
 
