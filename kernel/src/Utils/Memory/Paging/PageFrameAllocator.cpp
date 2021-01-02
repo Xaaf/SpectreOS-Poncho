@@ -60,9 +60,11 @@ void PageFrameAllocator::FreePage(void* address)
 
     if (pageBitmap[index] == false) return;
 
-    pageBitmap.Set(index, false);
-    freeMemory += 4096;
-    usedMemory -= 4096;
+    if (pageBitmap.Set(index, false)) 
+    {
+        freeMemory += 4096;
+        usedMemory -= 4096;
+    }
 }
 
 void PageFrameAllocator::FreePages(void* address, uint64_t pageCount)
@@ -79,9 +81,11 @@ void PageFrameAllocator::LockPage(void* address)
 
     if (pageBitmap[index] == true) return;
 
-    pageBitmap.Set(index, true);
-    freeMemory -= 4096;
-    usedMemory += 4096;
+    if (pageBitmap.Set(index, true)) 
+    {
+        freeMemory -= 4096;
+        usedMemory += 4096;
+    }
 }
 
 void PageFrameAllocator::LockPages(void* address, uint64_t pageCount)
@@ -138,9 +142,11 @@ void PageFrameAllocator::ReservePage(void* address)
 
     if (pageBitmap[index] == true) return;
 
-    pageBitmap.Set(index, true);
-    freeMemory -= 4096;
-    reservedMemory += 4096;
+    if (pageBitmap.Set(index, true))
+    {
+        freeMemory -= 4096;
+        reservedMemory += 4096;
+    }
 }
 
 void PageFrameAllocator::ReservePages(void* address, uint64_t pageCount)
@@ -157,9 +163,11 @@ void PageFrameAllocator::UnreservePage(void* address)
 
     if (pageBitmap[index] == false) return;
 
-    pageBitmap.Set(index, false);
-    freeMemory += 4096;
-    reservedMemory -= 4096;
+    if (pageBitmap.Set(index, false))
+    {
+        freeMemory += 4096;
+        reservedMemory -= 4096;
+    }
 }
 
 void PageFrameAllocator::UnreservePages(void* address, uint64_t pageCount)

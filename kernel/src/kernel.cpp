@@ -24,6 +24,7 @@ extern uint64_t _KernelEnd;
 
 extern "C" void _start(BootInfo* bootInfo) 
 {
+
 	BasicRenderer newRenderer = BasicRenderer(bootInfo->framebuffer, bootInfo->psf1_font);
     uint64_t memoryMapEntries = bootInfo->memoryMapSize / bootInfo->memoryMapDescriptorSize;
 
@@ -48,6 +49,8 @@ extern "C" void _start(BootInfo* bootInfo)
     uint64_t framebufferBase = (uint64_t)bootInfo->framebuffer->baseAddress;
     uint64_t framebufferSize = (uint64_t)bootInfo->framebuffer->bufferSize + 0x1000;
 
+    GlobalAllocator.LockPages((void*)framebufferBase, framebufferSize / 0x1000 + 1);
+
     for (uint64_t i = framebufferBase; i < framebufferBase + framebufferSize; i += 4096)
     {
         pageTableManager.MapMemory((void*)i, (void*)i);
@@ -55,7 +58,9 @@ extern "C" void _start(BootInfo* bootInfo)
 
     asm ("mov %0, %%cr3" : : "r" (pml4));
 
-    newRenderer.Print("New Page Map loaded...");
+    MemorySet(bootInfo->framebuffer->baseAddress, 0, bootInfo->framebuffer->bufferSize);
+    
+    pageTableManager.MapMemory((void*)0x600000000, (void*)0x80000);
 
 	return;
 }

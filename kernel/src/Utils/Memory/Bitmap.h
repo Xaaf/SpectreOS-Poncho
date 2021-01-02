@@ -12,7 +12,7 @@ public:
 	bool 		operator[](uint64_t index);
 
 public:
-	void 		Set(uint64_t index, bool value);
+	bool 		Set(uint64_t index, bool value);
 };
 
 #endif // BITMAP_H
