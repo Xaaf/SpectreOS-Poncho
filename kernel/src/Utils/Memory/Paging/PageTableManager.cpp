@@ -1,11 +1,11 @@
 #include "PageTableManager.h"
 
+#include <stdint.h>
+
 #include "../Memory.h"
 
 #include "PageFrameAllocator.h"
 #include "PageMapIndexer.h"
-
-#include <stdint.h>
 
 PageTableManager::PageTableManager(PageTable* pml4Address)
 {
@@ -30,13 +30,13 @@ void PageTableManager::MapMemory(void* virtualMemory, void* physicalMemory)
         pde.readWrite = true;
 
         pml4Address->entries[indexer.pdp_i] = pde;
-    }    
+    }
     else
     {
         pdp = (PageTable*)((uint64_t)pde.address << 12);
     }
 
-    pde = pml4Address->entries[indexer.pd_i];
+    pde = pdp->entries[indexer.pd_i];
     PageTable* pd;
 
     if (!pde.present)
@@ -48,14 +48,14 @@ void PageTableManager::MapMemory(void* virtualMemory, void* physicalMemory)
         pde.present = true;
         pde.readWrite = true;
 
-        pml4Address->entries[indexer.pd_i] = pde;
-    }    
+        pdp->entries[indexer.pd_i] = pde;
+    }
     else
     {
         pd = (PageTable*)((uint64_t)pde.address << 12);
     }
 
-    pde = pml4Address->entries[indexer.pt_i];
+    pde = pd->entries[indexer.pt_i];
     PageTable* pt;
 
     if (!pde.present)
@@ -67,17 +67,18 @@ void PageTableManager::MapMemory(void* virtualMemory, void* physicalMemory)
         pde.present = true;
         pde.readWrite = true;
 
-        pml4Address->entries[indexer.pt_i] = pde;
-    }    
+        pd->entries[indexer.pt_i] = pde;
+    }
     else
     {
         pt = (PageTable*)((uint64_t)pde.address << 12);
     }
 
     pde = pt->entries[indexer.p_i];
+
     pde.address = (uint64_t)physicalMemory >> 12;
     pde.present = true;
     pde.readWrite = true;
 
-    pt->entries[indexer.p_i] = pde;   
+    pt->entries[indexer.p_i] = pde;
 }
