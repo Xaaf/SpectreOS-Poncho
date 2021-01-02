@@ -9,5 +9,5 @@ extern "C" void _start(BootInfo* bootInfo)
 
     newRenderer.Print("Kernel has been initialised!");
 
-	return;
+	while (true);
 }
