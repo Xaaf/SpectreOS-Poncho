@@ -2,9 +2,9 @@
 
 *This is a version of SpectreOS that is basically a copy of Poncho's tutorial series. I have this repository here so that I can check back on this whenever I get stuck on implementing something in my own version of SpectreOS.*
 
-[![GitHub last commit](https://img.shields.io/github/last-commit/Xaaf/SpectreOS)](https://github.com/Xaaf/SpectreOS/commits)
-[![GitHub issues](https://img.shields.io/github/issues-raw/Xaaf/SpectreOS)](https://github.com/Xaaf/SpectreOS/issues)
-[![GitHub pull requests](https://img.shields.io/github/issues-pr/Xaaf/SpectreOS)](https://github.com/Xaaf/SpectreOS/pulls)
+[![GitHub last commit](https://img.shields.io/github/last-commit/Xaaf/SpectreOS-Poncho)](https://github.com/Xaaf/SpectreOS-Poncho/commits)
+[![GitHub issues](https://img.shields.io/github/issues-raw/Xaaf/SpectreOS-Poncho)](https://github.com/Xaaf/SpectreOS-Poncho/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/Xaaf/SpectreOS-Poncho)](https://github.com/Xaaf/SpectreOS-Poncho/pulls)
 
 An operating system made from scratch with a simple goal: providing an easy time for any user. This operating system will attempt to reach this goal by having a nice-to-look-at graphical interface, which will be following design standards that should provide good UI/UX.
 
