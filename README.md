@@ -1,4 +1,6 @@
-# 🖥️ SpectreOS
+# 🖥️ SpectreOS (Poncho Edition)
+
+*This is a version of SpectreOS that is basically a copy of Poncho's tutorial series. I have this repository here so that I can check back on this whenever I get stuck on implementing something in my own version of SpectreOS.*
 
 [![GitHub last commit](https://img.shields.io/github/last-commit/Xaaf/SpectreOS)](https://github.com/Xaaf/SpectreOS/commits)
 [![GitHub issues](https://img.shields.io/github/issues-raw/Xaaf/SpectreOS)](https://github.com/Xaaf/SpectreOS/issues)
